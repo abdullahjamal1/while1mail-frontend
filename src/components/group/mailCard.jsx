@@ -54,6 +54,12 @@ export default function MailCard({ mails: mailsList, onDelete }) {
   );
 }
 
+function createMarkup(text){
+  return{
+    __html: text
+  };
+};
+
 function MailsList({ currmail, onDelete }) {
   const [mail, setMail] = React.useState(currmail);
 
@@ -126,7 +132,9 @@ function MailsList({ currmail, onDelete }) {
               </Grid>
               <Grid item container direction="row">
                 <Grid item>Body :</Grid>
-                <Grid item>{mail.body}</Grid>
+                <Grid item>
+                  <div dangerouslySetInnerHTML={createMarkup(mail.body)}></div>
+                </Grid>
               </Grid>
             </Grid>
           </Typography>
