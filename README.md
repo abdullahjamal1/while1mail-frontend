@@ -3,8 +3,8 @@
 
 To clone and run the application on linux
 ```shell
-$ git clone https://github.com/aj941ga/while1mail-backend.git
-$ cd while1mail-backend
+$ git clone https://github.com/aj941ga/while1mail-frontend.git
+$ cd while1mail-frontend
 $ mpm install
 $ npm start
 ```
