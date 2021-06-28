@@ -1,3 +1,17 @@
+# while1mail-frontend
+### backend of this application => [https://github.com/aj941ga/while1mail-backend](https://github.com/aj941ga/while1mail-backend)
+
+To clone and run the application on linux
+```shell
+$ git clone https://github.com/aj941ga/while1mail-frontend.git
+$ cd while1mail-frontend
+```
+then set env variables REACT_APP_API_URL and REACT_APP_GOOGLE_OAUTH_URL
+```shell
+$ mpm install
+$ npm start
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
