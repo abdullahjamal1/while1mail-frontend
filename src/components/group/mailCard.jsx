@@ -103,7 +103,11 @@ function MailsList({ currmail, onDelete }) {
                 Sent On{" "}
                 <Chip
                   color="secondary"
-                  label={mail.scheduledDate}
+                  label={
+                    mail.scheduledDate.toString().split("T")[0] +
+                    " at " +
+                    mail.scheduledDate.toString().split("T")[1].substring(0, 8)
+                  }
                   size="small"
                 ></Chip>
               </>
@@ -188,7 +192,7 @@ function ScheduleDate({ schedule }) {
       {scheduled === "monthly" && (
         <Chip
           color="secondary"
-          label={`every ${monthDay} of month at ${hour}:${minute}`}
+          label={`${monthDay} of every month at ${hour}:${minute}`}
           size="small"
         />
       )}

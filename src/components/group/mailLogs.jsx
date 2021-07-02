@@ -60,12 +60,13 @@ class MailLogs extends Component {
   };
 
   handleMailDelete = async (mailId) => {
-    let originalMails;
+    let originalMails = [...this.state.mails];
     try {
-      const res = await deleteMailLog(mailId);
       // originalMails = this.state.mails;
-      let mails = this.state.mails.filter((mail) => mail._id !== mailId);
+      let mails = [...this.state.mails];
+      mails = mails.filter((mail) => mail._id !== mailId);
       this.setState({ mails });
+      await deleteMailLog(mailId);
     } catch (ex) {
       if (ex.response && ex.response.status === 404) toast.error(ex);
       // this.setState({ mails: originalMails });
@@ -88,9 +89,10 @@ class MailLogs extends Component {
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
         </div>
         <MailCard
-          mails={this.state.mails}
+          mails={data}
           user={user}
           onDelete={this.handleMailDelete}
+          props={this.props}
         />
         <div className="row">
           <Pagination

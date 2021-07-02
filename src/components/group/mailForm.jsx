@@ -131,7 +131,7 @@ export default function MailForm(props) {
   const onSubmit = async () => {
     const _id = props.match.params.id;
 
-    let data = { to, cc, body, subject };
+    let data = { to: to.toString(), cc: cc.toString(), body, subject };
     console.log(data);
     // data.to = data.to.trim();
     if (data.to) {

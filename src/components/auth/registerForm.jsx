@@ -60,8 +60,8 @@ class RegisterForm extends Form {
     return (
       <div className="row">
         <div className="col"></div>
-        <div className="col">
-          <form className="col" onSubmit={this.handleSubmit}>
+        <div className="col-12">
+          <form onSubmit={this.handleSubmit}>
             <h2>Register</h2>
             {this.renderInput("email", "Email")}
             {this.renderInput("name", "Name")}

@@ -62,12 +62,14 @@ class Mails extends Component {
   };
 
   handleMailDelete = async (mailId) => {
+    let originalMails = [...this.state.mails];
     try {
-      const res = await deleteMail(mailId);
       let mails = [...this.state.mails];
       mails = mails.filter((mail) => mail._id !== mailId);
       this.setState({ mails });
+      const res = await deleteMail(mailId);
     } catch (ex) {
+      this.setState({  mails: originalMails  });
       if (ex.response && ex.response.status === 404) toast.error(ex);
     }
   };
@@ -100,7 +102,7 @@ class Mails extends Component {
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
         </div>
         <MailCard
-          mails={data}
+          mails={this.state.mails}
           user={user}
           onDelete={this.handleMailDelete}
           props={this.props}
