@@ -21,7 +21,7 @@ class Mails extends Component {
   state = {
     mails: [],
     currentPage: 1,
-    pageSize: 100,
+    pageSize: 8,
     searchQuery: "",
     isLoading: true,
   };
@@ -32,8 +32,10 @@ class Mails extends Component {
     let filtered = allmails;
 
     if (searchQuery)
-      filtered = allmails.filter((g) =>
-        g.subject.toLowerCase().startsWith(searchQuery.toLowerCase())
+      filtered = allmails.filter(
+        (m) =>
+          m.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.body.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
     const mails = paginate(filtered, currentPage, pageSize);
@@ -69,7 +71,7 @@ class Mails extends Component {
       this.setState({ mails });
       const res = await deleteMail(mailId);
     } catch (ex) {
-      this.setState({  mails: originalMails  });
+      this.setState({ mails: originalMails });
       if (ex.response && ex.response.status === 404) toast.error(ex);
     }
   };
@@ -102,7 +104,7 @@ class Mails extends Component {
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
         </div>
         <MailCard
-          mails={this.state.mails}
+          mails={data}
           user={user}
           onDelete={this.handleMailDelete}
           props={this.props}

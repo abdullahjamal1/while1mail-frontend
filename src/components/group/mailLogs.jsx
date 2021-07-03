@@ -20,7 +20,7 @@ class MailLogs extends Component {
   state = {
     mails: [],
     currentPage: 1,
-    pageSize: 100,
+    pageSize: 8,
     searchQuery: "",
     isLoading: true,
   };
@@ -31,8 +31,10 @@ class MailLogs extends Component {
     let filtered = allmails;
 
     if (searchQuery)
-      filtered = allmails.filter((g) =>
-        g.subject.toLowerCase().startsWith(searchQuery.toLowerCase())
+      filtered = allmails.filter(
+        (m) =>
+          m.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.body.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
     const mails = paginate(filtered, currentPage, pageSize);

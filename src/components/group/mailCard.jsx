@@ -49,7 +49,9 @@ export default function MailCard({ mails: mailsList, onDelete }) {
   return (
     <Grid container direction="row" spacing={2}>
       {mails &&
-        mails.map((mail) => <MailsList currmail={mail} onDelete={onDelete} />)}
+        mails.map((mail) => (
+          <MailsList key={mail._id} currmail={mail} onDelete={onDelete} />
+        ))}
     </Grid>
   );
 }
