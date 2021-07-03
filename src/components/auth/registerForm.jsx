@@ -59,8 +59,8 @@ class RegisterForm extends Form {
   render() {
     return (
       <div className="row">
-        <div className="col"></div>
-        <div className="col-12">
+        <div className="col-sm-4"></div>
+        <div className="col-12 col-sm-4">
           <form onSubmit={this.handleSubmit}>
             <h2>Register</h2>
             {this.renderInput("email", "Email")}
@@ -71,7 +71,6 @@ class RegisterForm extends Form {
                 this.state.nameFeedback.message
               </div>
             )}
-
             {this.renderInput("password", "Password", "password")}
             {this.renderResponse()}
 
@@ -79,7 +78,7 @@ class RegisterForm extends Form {
             {this.renderButton("Register")}
           </form>
         </div>
-        <div className="col"></div>
+        <div className="col-sm-4"></div>
       </div>
     );
   }
