@@ -2,7 +2,7 @@ import axios from 'axios';
 import logger from './logService';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = process.env.AUTH_API_URL;
 
 axios.interceptors.response.use(null, error => {
 

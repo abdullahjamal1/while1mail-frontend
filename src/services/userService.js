@@ -1,13 +1,13 @@
 import { getJwt } from './authService';
 import http from './httpService';
-const apiEndPoint = "/users/register";
+const apiEndPoint = "/auth/register";
 
 export function register(user) {
     return http.post(apiEndPoint, user);
 }
 
 function userUrl(id) {
-    return `/users/${id}`;
+    return `/auth/${id}`;
 }
 
 export function getUser(id) {
@@ -15,11 +15,11 @@ export function getUser(id) {
 }
 
 export function getLoggedUser(){
-    return http.get('/users/me');
+    return http.get('/auth/me');
 }
 
 export function getAllUsers() {
-    return http.get("/users");
+    return http.get("/auth");
 }
 
 export function deleteUser(id) {
@@ -28,12 +28,4 @@ export function deleteUser(id) {
 
 export function updateUser(id, user) {
     return http.put(userUrl(id), user);
-}
-
-export function getDefaultAvatar({ target }) {
-    target.src = `${process.env.REACT_APP_S3_URL}default/images/user_avatar.jpg`;
-}
-
-export function getAvatar(userId) {
-    return `${process.env.REACT_APP_S3_URL}users/${userId}/${userId}.jpg`;
 }
